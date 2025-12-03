@@ -1,22 +1,3 @@
 # Large data files (> 100MB GitHub limit)
 borg_traces_data.csv
 archive.zip
-
-# Processed data (can be regenerated)
-processed_data/*.npy
-
-# Python cache
-__pycache__/
-*.pyc
-*.pyo
-
-# Logs
-logs/
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db

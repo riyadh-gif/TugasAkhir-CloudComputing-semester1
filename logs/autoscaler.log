@@ -1,0 +1,26 @@
+2025-12-03 21:12:55 | INFO | ============================================================
+2025-12-03 21:12:55 | INFO | Initializing Hybrid LSTM-ANFIS Autoscaler
+2025-12-03 21:12:55 | INFO | ============================================================
+2025-12-03 21:12:55 | INFO | Loading LSTM model...
+2025-12-03 21:12:57 | INFO |   ✓ LSTM loaded from /root/dhotok/best_lstm_model.keras
+2025-12-03 21:12:57 | INFO | Loading ANFIS model...
+2025-12-03 21:13:43 | INFO | ============================================================
+2025-12-03 21:13:43 | INFO | Initializing Hybrid LSTM-ANFIS Autoscaler
+2025-12-03 21:13:43 | INFO | ============================================================
+2025-12-03 21:13:43 | INFO | Loading LSTM model...
+2025-12-03 21:13:46 | INFO |   ✓ LSTM loaded from /root/dhotok/best_lstm_model.keras
+2025-12-03 21:13:46 | INFO | Loading ANFIS model...
+2025-12-03 21:16:15 | INFO | ============================================================
+2025-12-03 21:16:15 | INFO | Initializing Hybrid LSTM-ANFIS Autoscaler
+2025-12-03 21:16:15 | INFO | ============================================================
+2025-12-03 21:16:15 | INFO | Loading LSTM model...
+2025-12-03 21:16:18 | INFO |   ✓ LSTM loaded from /root/dhotok/best_lstm_model.keras
+2025-12-03 21:16:18 | INFO | Loading ANFIS model...
+2025-12-03 21:16:18 | INFO |   ✓ ANFIS loaded from /root/dhotok/best_anfis_journal.weights.h5
+2025-12-03 21:16:18 | INFO | Loading data scaler...
+2025-12-03 21:16:18 | INFO |   ✓ Scaler loaded
+2025-12-03 21:16:18 | INFO | ✓ Autoscaler ready for inference
+2025-12-03 21:16:19 | INFO | Decision: MAINTAIN | Intensity: +0.178 | CPU: 62.3% | Trend: +0.00 | Inference: 808.1ms
+2025-12-03 21:16:19 | INFO | Decision: SCALE_OUT | Intensity: +0.306 | CPU: 169.0% | Trend: +0.00 | Inference: 239.9ms
+2025-12-03 21:16:20 | INFO | Decision: MAINTAIN | Intensity: -0.046 | CPU: -1.1% | Trend: -1.00 | Inference: 191.3ms
+2025-12-03 21:16:20 | INFO | Decision: SCALE_OUT | Intensity: +0.331 | CPU: 165.6% | Trend: +1.00 | Inference: 191.6ms
