@@ -1,0 +1,49 @@
+
+================================================================================
+FINAL JOURNAL METRICS - HYBRID LSTM-ANFIS AUTOSCALING SYSTEM
+================================================================================
+Date: 2025-12-03T21:26:44
+Test Samples: 500
+
+================================================================================
+LSTM WORKLOAD PREDICTION PERFORMANCE
+================================================================================
+  Mean Squared Error (MSE):     0.001232
+  Mean Absolute Error (MAE):    0.012033
+  Root Mean Squared Error:      0.035099
+  R² Score:                     0.0061
+
+================================================================================
+ANFIS SCALING DECISION PERFORMANCE
+================================================================================
+  Mean Squared Error (MSE):     0.041772
+  Mean Absolute Error (MAE):    0.099878
+  Root Mean Squared Error:      0.204382
+  R² Score:                     -0.1368
+  Decision Accuracy:            80.00%
+
+================================================================================
+STATIC THRESHOLD BASELINE (Comparison)
+================================================================================
+  Mean Squared Error (MSE):     0.862936
+  Mean Absolute Error (MAE):    0.908949
+  Root Mean Squared Error:      0.928943
+  R² Score:                     -22.4833
+  Decision Accuracy:            19.40%
+
+================================================================================
+PERFORMANCE IMPROVEMENT (ANFIS vs Static)
+================================================================================
+  MSE Reduction:                95.2%
+  MAE Reduction:                89.0%
+  R² Improvement:               22.3465
+  Decision Accuracy Gain:       60.6%
+
+================================================================================
+GENERATED FIGURES
+================================================================================
+  Figure 4: /root/dhotok/results/journal_figures/figure4_control_surface_3d.png
+  Figure 5: /root/dhotok/results/journal_figures/figure5_comparative_response.png
+  Figure 6: /root/dhotok/results/journal_figures/figure6_regression_analysis.png
+
+================================================================================

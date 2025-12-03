@@ -1,0 +1,115 @@
+root@71d74bc8fcbe:~/dhotok# python evaluate_journal_final.py
+======================================================================
+FINAL JOURNAL EVALUATION
+Hybrid LSTM-ANFIS Autoscaling System
+======================================================================
+
+[1/6] Defining ANFIS Architecture...
+  ✓ ANFIS architecture defined
+
+[2/6] Loading Models...
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1764797107.177512  528231 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 43710 MB memory:  -> device: 0, name: NVIDIA A40, pci bus id: 0000:57:00.0, compute capability: 8.6
+  ✓ LSTM loaded from /root/dhotok/best_lstm_model.keras
+  ✓ ANFIS loaded from /root/dhotok/best_anfis_journal.weights.h5
+  ✓ Scaler loaded
+
+[3/6] Running Hybrid Pipeline Simulation...
+  Test samples: 500
+  Running simulation loop...
+I0000 00:00:1764797110.405565  528576 device_compiler.h:196] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+  ✓ Simulation complete
+
+[4/6] Calculating Metrics...
+  LSTM Performance:
+    MSE: 0.001232
+    MAE: 0.012033
+    RMSE: 0.035099
+    R²: 0.0061
+
+  ANFIS Performance:
+    MSE: 0.041772
+    MAE: 0.099878
+    RMSE: 0.204382
+    R²: -0.1368
+    Decision Accuracy: 80.00%
+
+  Static Threshold Baseline:
+    MSE: 0.862936
+    R²: -22.4833
+    Decision Accuracy: 19.40%
+
+[5/6] Generating Publication Figures...
+  Generating Figure 4: Control Surface (3D)...
+    ✓ Saved: /root/dhotok/results/journal_figures/figure4_control_surface_3d.png
+  Generating Figure 5: Comparative Response...
+    ✓ Saved: /root/dhotok/results/journal_figures/figure5_comparative_response.png
+  Generating Figure 6: Regression Analysis...
+    ✓ Saved: /root/dhotok/results/journal_figures/figure6_regression_analysis.png
+
+[6/6] Saving Final Metrics...
+  ✓ Metrics saved to: /root/dhotok/results/final_journal_metrics.txt
+
+======================================================================
+EVALUATION COMPLETE!
+======================================================================
+
+================================================================================
+FINAL JOURNAL METRICS - HYBRID LSTM-ANFIS AUTOSCALING SYSTEM
+================================================================================
+Date: 2025-12-03T21:26:44
+Test Samples: 500
+
+================================================================================
+LSTM WORKLOAD PREDICTION PERFORMANCE
+================================================================================
+  Mean Squared Error (MSE):     0.001232
+  Mean Absolute Error (MAE):    0.012033
+  Root Mean Squared Error:      0.035099
+  R² Score:                     0.0061
+
+================================================================================
+ANFIS SCALING DECISION PERFORMANCE
+================================================================================
+  Mean Squared Error (MSE):     0.041772
+  Mean Absolute Error (MAE):    0.099878
+  Root Mean Squared Error:      0.204382
+  R² Score:                     -0.1368
+  Decision Accuracy:            80.00%
+
+================================================================================
+STATIC THRESHOLD BASELINE (Comparison)
+================================================================================
+  Mean Squared Error (MSE):     0.862936
+  Mean Absolute Error (MAE):    0.908949
+  Root Mean Squared Error:      0.928943
+  R² Score:                     -22.4833
+  Decision Accuracy:            19.40%
+
+================================================================================
+PERFORMANCE IMPROVEMENT (ANFIS vs Static)
+================================================================================
+  MSE Reduction:                95.2%
+  MAE Reduction:                89.0%
+  R² Improvement:               22.3465
+  Decision Accuracy Gain:       60.6%
+
+================================================================================
+GENERATED FIGURES
+================================================================================
+  Figure 4: /root/dhotok/results/journal_figures/figure4_control_surface_3d.png
+  Figure 5: /root/dhotok/results/journal_figures/figure5_comparative_response.png
+  Figure 6: /root/dhotok/results/journal_figures/figure6_regression_analysis.png
+
+================================================================================
+
+
+Output Files:
+  - /root/dhotok/results/journal_figures/figure4_control_surface_3d.png
+  - /root/dhotok/results/journal_figures/figure5_comparative_response.png
+  - /root/dhotok/results/journal_figures/figure6_regression_analysis.png
+  - /root/dhotok/results/final_journal_metrics.txt
+
+Ready for Thesis/Journal submission!
+
+root@71d74bc8fcbe:~/dhotok# 

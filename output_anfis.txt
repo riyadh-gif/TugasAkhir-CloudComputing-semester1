@@ -1,0 +1,253 @@
+root@71d74bc8fcbe:~/dhotok# python train_anfis_journal.py
+2025-12-03 20:57:27.057649: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-12-03 20:57:27.114866: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-12-03 20:57:28.539235: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+======================================================================
+ANFIS JOURNAL-READY IMPLEMENTATION
+Regression-based Autoscaling Decision System
+======================================================================
+
+Configuration:
+  - Membership Functions per input: 5
+  - Number of fuzzy rules: 25
+  - Output: REGRESSION [-1, 1] (Scale In ← 0 → Scale Out)
+  - L2 Regularization: 0.01
+  - Smoothness Lambda: 0.05
+  - Cross-validation folds: 5
+
+======================================================================
+ANFIS JOURNAL-READY TRAINING PIPELINE
+======================================================================
+
+[STEP 1] Loading LSTM model and data...
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1764795450.775357  152566 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 43710 MB memory:  -> device: 0, name: NVIDIA A40, pci bus id: 0000:57:00.0, compute capability: 8.6
+  ✓ LSTM loaded and frozen
+  ✓ Data: 153,408 samples
+
+[STEP 2] Generating ANFIS training data (REGRESSION target)...
+2025-12-03 20:57:33.038472: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:473] Loaded cuDNN version 91002
+  ANFIS Input shape: (153408, 2)
+  ANFIS Target shape: (153408, 1)
+  Workload range: [-0.0064, 1.0504]
+  Trend range: [-1.0000, 1.0000]
+  Target range: [-0.2305, 1.0000]
+
+  Target distribution (discretized for reference):
+    Scale In (<-0.2): 1 (0.0%)
+    Maintain [-0.2, 0.2]: 150,493 (98.1%)
+    Scale Out (>0.2): 2,914 (1.9%)
+
+[STEP 3] Training ANFIS (REGRESSION) with 5-Fold TimeSeriesSplit
+------------------------------------------------------------
+
+==================== Fold 1/5 ====================
+  Train: 25,568 | Val: 25,568
+2025-12-03 20:57:57.313214: I external/local_xla/xla/service/service.cc:163] XLA service 0x79e2e7b39150 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2025-12-03 20:57:57.313240: I external/local_xla/xla/service/service.cc:171]   StreamExecutor device (0): NVIDIA A40, Compute Capability 8.6
+2025-12-03 20:57:57.388246: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+I0000 00:00:1764795478.358626  152914 device_compiler.h:196] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+Traceback (most recent call last):
+  File "/root/dhotok/train_anfis_journal.py", line 880, in <module>
+    best_model, avg_metrics = main()
+                              ^^^^^^
+  File "/root/dhotok/train_anfis_journal.py", line 835, in main
+    best_model, all_metrics, avg_metrics = train_anfis_cv(X_anfis, y_anfis, N_CV_SPLITS)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dhotok/train_anfis_journal.py", line 636, in train_anfis_cv
+    metrics = calculate_journal_metrics(y_val, y_pred, prefix='val_')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dhotok/train_anfis_journal.py", line 529, in calculate_journal_metrics
+    mse = mean_squared_error(y_true, y_pred)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sklearn/metrics/_regression.py", line 580, in mean_squared_error
+    _check_reg_targets_with_floating_dtype(
+  File "/usr/local/lib/python3.12/dist-packages/sklearn/metrics/_regression.py", line 209, in _check_reg_targets_with_floating_dtype
+    y_type, y_true, y_pred, sample_weight, multioutput = _check_reg_targets(
+                                                         ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sklearn/metrics/_regression.py", line 114, in _check_reg_targets
+    check_consistent_length(y_true, y_pred, sample_weight)
+  File "/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py", line 473, in check_consistent_length
+    raise ValueError(
+ValueError: Found input variables with inconsistent numbers of samples: [25568, 639200]
+root@71d74bc8fcbe:~/dhotok# python train_anfis_journal.py
+2025-12-03 21:00:06.360044: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-12-03 21:00:06.419343: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-12-03 21:00:07.756143: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+======================================================================
+ANFIS JOURNAL-READY IMPLEMENTATION
+Regression-based Autoscaling Decision System
+======================================================================
+
+Configuration:
+  - Membership Functions per input: 5
+  - Number of fuzzy rules: 25
+  - Output: REGRESSION [-1, 1] (Scale In ← 0 → Scale Out)
+  - L2 Regularization: 0.01
+  - Smoothness Lambda: 0.05
+  - Cross-validation folds: 5
+
+======================================================================
+ANFIS JOURNAL-READY TRAINING PIPELINE
+======================================================================
+
+[STEP 1] Loading LSTM model and data...
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1764795610.087238  175308 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 43710 MB memory:  -> device: 0, name: NVIDIA A40, pci bus id: 0000:57:00.0, compute capability: 8.6
+  ✓ LSTM loaded and frozen
+  ✓ Data: 153,408 samples
+
+[STEP 2] Generating ANFIS training data (REGRESSION target)...
+2025-12-03 21:00:12.107490: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:473] Loaded cuDNN version 91002
+  ANFIS Input shape: (153408, 2)
+  ANFIS Target shape: (153408, 1)
+  Workload range: [-0.0064, 1.0504]
+  Trend range: [-1.0000, 1.0000]
+  Target range: [-0.2305, 1.0000]
+
+  Target distribution (discretized for reference):
+    Scale In (<-0.2): 1 (0.0%)
+    Maintain [-0.2, 0.2]: 150,493 (98.1%)
+    Scale Out (>0.2): 2,914 (1.9%)
+
+[STEP 3] Training ANFIS (REGRESSION) with 5-Fold TimeSeriesSplit
+------------------------------------------------------------
+
+==================== Fold 1/5 ====================
+  Train: 25,568 | Val: 25,568
+2025-12-03 21:00:34.030893: I external/local_xla/xla/service/service.cc:163] XLA service 0x7e96d803e580 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2025-12-03 21:00:34.030949: I external/local_xla/xla/service/service.cc:171]   StreamExecutor device (0): NVIDIA A40, Compute Capability 8.6
+2025-12-03 21:00:34.118391: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+I0000 00:00:1764795634.922425  175660 device_compiler.h:196] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+  MSE: 0.001260
+  MAE: 0.009951
+  R²: 0.6365
+  Decision Accuracy: 98.63%
+    - Scale In Acc: 0.0%
+    - Maintain Acc: 100.0%
+    - Scale Out Acc: 1.1%
+
+==================== Fold 2/5 ====================
+  Train: 51,136 | Val: 25,568
+  MSE: 0.002606
+  MAE: 0.012143
+  R²: 0.5889
+  Decision Accuracy: 97.95%
+    - Scale In Acc: 0.0%
+    - Maintain Acc: 100.0%
+    - Scale Out Acc: 2.4%
+
+==================== Fold 3/5 ====================
+  Train: 76,704 | Val: 25,568
+  MSE: 0.000365
+  MAE: 0.007197
+  R²: 0.8778
+  Decision Accuracy: 99.89%
+    - Scale In Acc: 0.0%
+    - Maintain Acc: 100.0%
+    - Scale Out Acc: 91.4%
+
+==================== Fold 4/5 ====================
+  Train: 102,272 | Val: 25,568
+  MSE: 0.002833
+  MAE: 0.014041
+  R²: 0.6870
+  Decision Accuracy: 99.87%
+    - Scale In Acc: 0.0%
+    - Maintain Acc: 100.0%
+    - Scale Out Acc: 96.4%
+
+==================== Fold 5/5 ====================
+  Train: 127,840 | Val: 25,568
+  MSE: 0.001011
+  MAE: 0.008489
+  R²: 0.7354
+  Decision Accuracy: 99.87%
+    - Scale In Acc: 0.0%
+    - Maintain Acc: 99.9%
+    - Scale Out Acc: 99.5%
+
+============================================================
+CROSS-VALIDATION SUMMARY (REGRESSION METRICS)
+============================================================
+
+Average Metrics (5 folds):
+  MSE:  0.001615
+  MAE:  0.010364
+  RMSE: 0.038138
+  R²:   0.7051 ± 0.0993
+  Decision Accuracy: 99.24% ± 0.81%
+
+Best Fold: 3 (R² = 0.8778)
+
+[STEP 4] Saving best model...
+
+  ✓ Weights saved: /root/dhotok/best_anfis_journal.weights.h5
+  ✓ Config saved: /root/dhotok/best_anfis_journal_config.joblib
+
+============================================================
+MODEL ANALYSIS
+============================================================
+
+1. LEARNED MEMBERSHIP FUNCTIONS:
+--------------------------------------------------
+
+  Predicted_Workload:
+    Very Low: μ=-0.1387, σ=0.0398
+    Low: μ=0.3615, σ=0.0428
+    Medium: μ=0.6685, σ=0.0476
+    High: μ=0.7399, σ=0.2001
+    Very High: μ=1.1727, σ=0.0498
+
+  Workload_Trend:
+    Very Low: μ=-0.1045, σ=0.0493
+    Low: μ=0.1895, σ=0.5217
+    Medium: μ=0.5307, σ=0.0435
+    High: μ=0.5307, σ=0.0454
+    Very High: μ=1.2159, σ=0.0326
+
+2. RULE IMPORTANCE:
+--------------------------------------------------
+  Active Rules: 23/25
+  Top 5 Most Important Rules:
+    #1: Rule 17 (Workload=High, Trend=Low) - Importance: 1.7484
+    #2: Rule 1 (Workload=Very Low, Trend=Very Low) - Importance: 1.3162
+    #3: Rule 3 (Workload=Very Low, Trend=Medium) - Importance: 1.1550
+    #4: Rule 13 (Workload=Medium, Trend=Medium) - Importance: 1.1177
+    #5: Rule 10 (Workload=Low, Trend=Very High) - Importance: 1.0456
+
+  ✓ Analysis plot saved to: /root/dhotok/results/anfis_journal_analysis.png
+
+  ✓ Metrics saved: /root/dhotok/results/anfis_cv_metrics.joblib
+
+======================================================================
+ANFIS JOURNAL-READY TRAINING COMPLETE!
+======================================================================
+
+Summary:
+  - Architecture: 2 inputs × 5 MFs = 25 rules
+  - Output: REGRESSION [-1, 1] (Continuous Scaling Intensity)
+  - Average R²: 0.7051
+  - Average Decision Accuracy: 99.24%
+  - Average MAE: 0.010364
+
+Novelty Contributions:
+  1. ✓ MF Ordering Constraint (semantic consistency)
+  2. ✓ Dynamic Rule Importance with Pruning
+  3. ✓ Multi-Objective Loss (MSE + Smoothness + Deadzone)
+  4. ✓ Continuous scaling output [-1, 1]
+
+Saved Files:
+  - /root/dhotok/best_anfis_journal.weights.h5
+  - /root/dhotok/best_anfis_journal_config.joblib
+  - /root/dhotok/results/anfis_journal_analysis.png
+  - /root/dhotok/results/anfis_cv_metrics.joblib
+
+Next Step: Create hybrid inference pipeline (LSTM + ANFIS).
+    
+root@71d74bc8fcbe:~/dhotok# 
