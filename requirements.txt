@@ -1,0 +1,28 @@
+# Real-time Hybrid Autoscaler Requirements
+# LSTM + ANFIS for Docker Swarm Autoscaling
+
+# Core ML/AI libraries
+tensorflow>=2.12.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+joblib>=1.0.0
+
+# Data processing
+pandas>=1.3.0
+
+# HTTP requests for Prometheus
+requests>=2.25.0
+
+# Docker API
+docker>=6.0.0
+
+# System utilities
+psutil>=5.8.0
+
+# Optional: For enhanced logging and monitoring
+colorama>=0.4.0
+tqdm>=4.60.0
+
+# Development utilities (optional)
+matplotlib>=3.5.0
+seaborn>=0.11.0
